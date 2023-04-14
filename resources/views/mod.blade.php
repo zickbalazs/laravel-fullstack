@@ -13,33 +13,36 @@
 
 <body>
     @if (isset($data->id))
-        <form action="/api/delete/{{ $data->id }}" method="post">
+        <form action="/api/mod/{{ $data->id }}" method="post">
             @csrf
-            @method('DELETE')
+            @method('PUT')
             <div class="mb-3">
                 <label class="form-label">ID:</label>
                 <input class="form-control" type="number" disabled value="{{ $data->id }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">Day:</label>
-                <input class="form-control" type="date" value="{{ $data->day }}">
+                <input class="form-control" type="date" name="day" value="{{ $data->day }}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Day:</label>
+                <textarea name="description" class="form-control">{{$data->description}}</textarea>
             </div>
             <div class="mb-3">
                 <label class="form-label">From:</label>
-                <input class="form-control" type="time" value="{{ $data->from }}">
+                <input class="form-control" type="time" name="from" value="{{ $data->from }}">
             </div>
             <div class="mb-3">
                 <label class="form-label">To:</label>
-                <input class="form-control" type="time" value="{{ $data->to }}">
+                <input class="form-control" type="time" name="to" value="{{ $data->to }}">
             </div>
             <div class="mb-3 form-check">
-                <input class="form-check-input" type="checkbox" value="{{$data->done}}">
-                <label class="form-check-label">Default checkbox</label>
+                <input class="form-check-input" type="checkbox" name="done" value="{{$data->done}}">
+                <label class="form-check-label">Done?</label>
             </div>
-            <label class="form-label">Are you sure to delete this?</label>
             <div class="d-block">
-                <input type="submit" class="btn btn-danger" value="Yes">
-                <a href="/" class="btn btn-success">No</a>
+                <a href="/" class="btn btn-success"><i class="bi bi-arrow-left"></i></a>
+                <input type="submit" class="btn btn-warning" value="modify">
             </div>
         </form>
     @else

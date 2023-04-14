@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <header class="text-center bg-dark text-light py-5 mb-3">
+        <h1>Edzés alkalmazás</h1>
+    </header>
+
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success mb-3"><i class="bi bi-plus"></i></button>
+
     <table class="table">
         <thead>
             <tr>
@@ -32,7 +38,13 @@
                     <td>{{ $training->description }}</td>
                     <td>{{ $training->from }}</td>
                     <td>{{ $training->to }}</td>
-                    <td>{{ $training->done }}</td>
+                    <td>
+                        @if ($training->done)
+                            <i class="bi bi-check"></i>
+                        @else
+                            <i class="bi bi-x"></i>
+                        @endif
+                    </td>
                     <td>
                         <a class="btn btn-warning" href="/mod/{{ $training->id }}"><i class="bi bi-wrench"></i></a>
                         <a class="btn btn-danger" href="/delete/{{ $training->id }}"><i class="bi bi-trash"></i></a>
@@ -41,8 +53,7 @@
             @endforeach
         </tbody>
     </table>
-    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success"><i
-            class="bi bi-plus"></i></button>
+    
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

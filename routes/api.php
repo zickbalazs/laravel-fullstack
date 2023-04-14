@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/new-training', [TrainingDayController::class, 'store']);
 Route::delete('/delete/{id}', [TrainingDayController::class, 'destroy']);
+Route::put('/mod/{id}', [TrainingDayController::class, 'update']);

@@ -30,10 +30,7 @@ class TrainingDayController extends Controller
         $day->description = $request->description;
         $day->from = $request->from;
         $day->to = $request->to;
-        if ($request->done==1){
-            $day->done = true;
-        }
-        else $day->done = false;
+        $day->done = $request->has('done');
         $day["created_at"] = time();
         $day->save();
         return redirect('/');
@@ -64,7 +61,7 @@ class TrainingDayController extends Controller
         $day->description = $request->description;
         $day->from = $request->from;
         $day->to = $request->to;
-        $day->done = $request->done;
+        $day->done = $request->has('done');
         $day["updated_at"] = time();
         $day->save();
         return redirect('/');
